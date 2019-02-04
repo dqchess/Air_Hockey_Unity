@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour,IReset
 {
 
     Rigidbody2D rb;
@@ -34,10 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         Controller.Players.Add(this);
+        UiManager.Instance.resetGameObjects.Add(this);
     }
     private void OnDisable()
     {
         Controller.Players.Remove(this);
+        UiManager.Instance.resetGameObjects.Remove(this);
     }
 
     public void MoveToPosition(Vector2 position)

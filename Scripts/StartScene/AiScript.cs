@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiScript : MonoBehaviour
+public class AiScript : MonoBehaviour,IReset
 {
     public float MaxMovementSpeed;
     private Rigidbody2D rb;
@@ -36,6 +36,7 @@ public class AiScript : MonoBehaviour
         , PuckBoundaryHolder.GetChild(2).position.x
         , PuckBoundaryHolder.GetChild(3).position.x
         );
+        UiManager.Instance.resetGameObjects.Add(this);
     }
     private void FixedUpdate()
     {

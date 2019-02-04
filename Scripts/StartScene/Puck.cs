@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Puck : MonoBehaviour
+public class Puck : MonoBehaviour,IReset
 {
     public Score scoreInstance;
     public static bool WasGoal { get; private set; }
@@ -13,7 +13,8 @@ public class Puck : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        WasGoal = false; 
+        WasGoal = false;
+        UiManager.Instance.resetGameObjects.Add(this);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -57,8 +58,10 @@ public class Puck : MonoBehaviour
     {
         rb.velocity = Vector2.ClampMagnitude(rb.velocity,maxSpeed);
     }
-    public void CenterPuck()
+    public void ResetPosition()
     {
         rb.position = new Vector2(0,0);
     }
+
+
 }

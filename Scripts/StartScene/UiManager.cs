@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+    #region Singleton  
+    public static UiManager Instance { get; private set; }
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
+
+
     [Header("Canvas")]
     public GameObject CanvasGame;
     public GameObject CanvasRestart;
@@ -15,9 +24,8 @@ public class UiManager : MonoBehaviour
     [Header("Other")]
     public AudioManager audioManager;
     public Score score;
-    public Puck puck;
-    public PlayerMovement playerMovement;
-    public AiScript aiScript;
+
+    public List<IReset> resetGameObjects = new List<IReset>();
 
     public void ShowRestartCanvas(bool didAiWin)
     {
@@ -43,9 +51,11 @@ public class UiManager : MonoBehaviour
         CanvasGame.SetActive(true);
         CanvasRestart.SetActive(false);
         score.ResetScores();
-        puck.CenterPuck();
-        playerMovement.ResetPosition();
-        aiScript.ResetPosition();
+
+        foreach (var obj in resetGameObjects)
+        {
+            obj.ResetPosition();
+        }
     }
     public void ShowMenu()
     {
