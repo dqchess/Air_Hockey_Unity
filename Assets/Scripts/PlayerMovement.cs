@@ -4,16 +4,15 @@ public class PlayerMovement : MonoBehaviour
 {
     bool wasJustClicked = true;
     bool canMove;
-    Vector2 playerSize;
     Rigidbody2D rb;
     public Transform boundaryHolder;
     Boundary playerBoundary;
-   
+    Collider2D playerCollider;
     // Start is called before the first frame update
     void Start()
     {
-        playerSize = GetComponent<SpriteRenderer>().bounds.extents;
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<Collider2D>();
         playerBoundary = new Boundary(boundaryHolder.GetChild(0).position.y
             ,boundaryHolder.GetChild(1).position.y
             ,boundaryHolder.GetChild(2).position.x
@@ -32,18 +31,14 @@ public class PlayerMovement : MonoBehaviour
             if (wasJustClicked)
             {
                 wasJustClicked = false;
-
-                if ((mousePos.x >= transform.position.x && mousePos.x < transform.position.x + playerSize.x ||
-                mousePos.x <= transform.position.x && mousePos.x > transform.position.x - playerSize.x) &&
-                (mousePos.y >= transform.position.y && mousePos.y < transform.position.y + playerSize.y ||
-                mousePos.y <= transform.position.y && mousePos.y > transform.position.y - playerSize.y))
+                if (playerCollider.OverlapPoint(mousePos))
                 {
                     canMove = true;
-                }
-                else
+                } else
                 {
                     canMove = false;
                 }
+              
             }
 
             if (canMove)

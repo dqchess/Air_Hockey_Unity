@@ -39,34 +39,37 @@ public class AiScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float movementSpeed;
-        if(puck.position.y< puckBoundary.Down)
+        if (!Puck.WasGoal)
         {
-            if (isFirstTimeInOppenentsHalf)
+            float movementSpeed;
+            if (puck.position.y < puckBoundary.Down)
             {
-                isFirstTimeInOppenentsHalf = false;
-                offsetXFromTarget = Random.Range(-1f,1f);
+                if (isFirstTimeInOppenentsHalf)
+                {
+                    isFirstTimeInOppenentsHalf = false;
+                    offsetXFromTarget = Random.Range(-1f, 1f);
+                }
+
+                movementSpeed = MaxMovementSpeed * Random.Range(0.1f, 0.3f);
+                targetPosition = new Vector2(Mathf.Clamp(puck.position.x + offsetXFromTarget,
+                    playerBoundary.Left,
+                    playerBoundary.Right),
+                    startingPosition.y);
             }
+            else
+            {
+                isFirstTimeInOppenentsHalf = true;
 
-            movementSpeed = MaxMovementSpeed * Random.Range(0.1f,0.3f);
-            targetPosition = new Vector2(Mathf.Clamp(puck.position.x + offsetXFromTarget,
-                playerBoundary.Left,
-                playerBoundary.Right),
-                startingPosition.y);
-        } else
-        {
-            isFirstTimeInOppenentsHalf = true;
-
-            movementSpeed = Random.Range(MaxMovementSpeed*0.4f,MaxMovementSpeed);
-            targetPosition = new Vector2(Mathf.Clamp(puck.position.x,
-                                         playerBoundary.Left,
-                                         playerBoundary.Right),
-                                         Mathf.Clamp(puck.position.y,
-                                         playerBoundary.Down, 
-                                         playerBoundary.Up));
+                movementSpeed = Random.Range(MaxMovementSpeed * 0.4f, MaxMovementSpeed);
+                targetPosition = new Vector2(Mathf.Clamp(puck.position.x,
+                                             playerBoundary.Left,
+                                             playerBoundary.Right),
+                                             Mathf.Clamp(puck.position.y,
+                                             playerBoundary.Down,
+                                             playerBoundary.Up));
+            }
+            rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition,
+                movementSpeed * Time.fixedDeltaTime));
         }
-        rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition,
-            movementSpeed * Time.fixedDeltaTime));
-
     }
 }

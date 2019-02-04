@@ -50,3 +50,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# SQL Server files
+*.mdf
+*.ldf
+
+# ignore Temp folder
+Temp/
