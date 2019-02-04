@@ -6,7 +6,9 @@ public class Puck : MonoBehaviour
 {
     public Score scoreInstance;
     public static bool WasGoal { get; private set; }
+    public float maxSpeed;
     private Rigidbody2D rb;
+    public AudioManager audioManager; 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,19 +23,38 @@ public class Puck : MonoBehaviour
             {
                 scoreInstance.Increment(Score.ScoreEnum.PlayerScore);
                 WasGoal = true;
-                StartCoroutine(ResetPuck());
+                audioManager.PlayGoal();
+                StartCoroutine(ResetPuck(false));
             } else if(collision.tag == "PlayerGoal")
             {
                 scoreInstance.Increment(Score.ScoreEnum.AiScore);
                 WasGoal = true;
-                StartCoroutine(ResetPuck());
+                audioManager.PlayGoal();
+                StartCoroutine(ResetPuck(true));
             }
         }
     }
-    private IEnumerator ResetPuck()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        audioManager.PlayPuckCollision();        
+    }
+    private IEnumerator ResetPuck(bool didAiScore)
     {
         yield return new WaitForSecondsRealtime(1);
         WasGoal = false;
         rb.velocity = rb.position = new Vector2(0, 0);
+
+        if(didAiScore)
+        {
+            rb.position = new Vector2(0,-1);
+        } else
+        {
+            rb.position = new Vector2(0, 1);
+
+        }
+    }
+    private void FixedUpdate()
+    {
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity,maxSpeed);
     }
 }
