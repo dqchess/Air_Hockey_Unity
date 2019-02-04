@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -45,5 +46,10 @@ public class UiManager : MonoBehaviour
         puck.CenterPuck();
         playerMovement.ResetPosition();
         aiScript.ResetPosition();
+    }
+    public void ShowMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 }

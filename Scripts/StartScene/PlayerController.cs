@@ -5,7 +5,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public List<PlayerMovement> Players = new List<PlayerMovement>();
+    public GameObject AiPlayer;
 
+    private void Start()
+    {
+        if (GameValues.IsMultiplayer)
+        {
+            AiPlayer.GetComponent<PlayerMovement>().enabled = true;
+            AiPlayer.GetComponent<AiScript>().enabled = false;
+        }
+        else
+        {
+            AiPlayer.GetComponent<PlayerMovement>().enabled = false;
+            AiPlayer.GetComponent<AiScript>().enabled = true;
+        } 
+    }
+    
     // Update is called once per frame
     void Update()
     {
