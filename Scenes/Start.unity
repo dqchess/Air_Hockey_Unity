@@ -966,10 +966,10 @@ GameObject:
   m_Component:
   - component: {fileID: 821111145}
   - component: {fileID: 821111144}
-  - component: {fileID: 821111143}
   - component: {fileID: 821111142}
   - component: {fileID: 821111146}
   - component: {fileID: 821111147}
+  - component: {fileID: 821111143}
   m_Layer: 0
   m_Name: PlayerBlue
   m_TagString: Untagged
@@ -1013,7 +1013,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.5688889
 --- !u!212 &821111144
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1569,9 +1569,6 @@ MonoBehaviour:
   LoseText: {fileID: 149819502}
   audioManager: {fileID: 961156754}
   score: {fileID: 961156751}
-  puck: {fileID: 1076831093}
-  playerMovement: {fileID: 1781423174}
-  aiScript: {fileID: 821111146}
 --- !u!114 &961156756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,9 +1723,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1076831092}
   - component: {fileID: 1076831091}
-  - component: {fileID: 1076831090}
   - component: {fileID: 1076831089}
   - component: {fileID: 1076831093}
+  - component: {fileID: 1076831090}
   m_Layer: 0
   m_Name: Puck
   m_TagString: Untagged
@@ -1772,7 +1769,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45572916
+  m_Radius: 0.4375
 --- !u!212 &1076831091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2592,8 +2589,8 @@ GameObject:
   - component: {fileID: 1781423176}
   - component: {fileID: 1781423175}
   - component: {fileID: 1781423174}
-  - component: {fileID: 1781423177}
   - component: {fileID: 1781423178}
+  - component: {fileID: 1781423177}
   m_Layer: 0
   m_Name: PlayerRed
   m_TagString: Untagged
@@ -2692,7 +2689,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.5688889
 --- !u!50 &1781423178
 Rigidbody2D:
   serializedVersion: 4
