@@ -53,7 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AiScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\types\Boundary.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/UnityProjects/AirHockeyTut/AirHockeyTut/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
