@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 187624152}
   m_Layer: 0
-  m_Name: PlayerBoundaryHolder
+  m_Name: PlayerRedBoundaryHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371590775}
   m_Layer: 0
-  m_Name: AiBoundaryHolder
+  m_Name: PlayerBlueBoundaryHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,8 +840,9 @@ GameObject:
   - component: {fileID: 821111143}
   - component: {fileID: 821111142}
   - component: {fileID: 821111146}
+  - component: {fileID: 821111147}
   m_Layer: 0
-  m_Name: AiBlue
+  m_Name: PlayerBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +954,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821111141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b12303b3e4a8de9428c79f8165e98ea7, type: 3}
   m_Name: 
@@ -962,6 +963,20 @@ MonoBehaviour:
   puck: {fileID: 1076831089}
   PlayerBoundaryHolder: {fileID: 371590775}
   PuckBoundaryHolder: {fileID: 915766692}
+--- !u!114 &821111147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821111141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9beaecef7f094b94e97ac5869439b71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundaryHolder: {fileID: 371590775}
+  Controller: {fileID: 961156756}
 --- !u!1 &835214731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1272,7 @@ GameObject:
   - component: {fileID: 961156754}
   - component: {fileID: 961156755}
   - component: {fileID: 961156753}
+  - component: {fileID: 961156756}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1427,6 +1443,19 @@ MonoBehaviour:
   puck: {fileID: 1076831093}
   playerMovement: {fileID: 1781423174}
   aiScript: {fileID: 821111146}
+--- !u!114 &961156756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961156750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8241db03dafb268448f5c2f5b39634e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Players: []
 --- !u!1 &984288924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,6 +2483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundaryHolder: {fileID: 187624152}
+  Controller: {fileID: 961156756}
 --- !u!212 &1781423175
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -74,6 +74,9 @@ public class AiScript : MonoBehaviour
     }
     public void ResetPosition()
     {
-        rb.position = startingPosition;
+        if (rb != null)
+        {
+            rb.position = startingPosition;
+        }
     }
 }
